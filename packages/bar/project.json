@@ -1,0 +1,38 @@
+{
+  "name": "bar",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/bar/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/packages/bar",
+        "format": ["cjs"],
+        "bundle": false,
+        "main": "packages/bar/src/main.ts",
+        "tsConfig": "packages/bar/tsconfig.app.json",
+        "assets": ["packages/bar/src/assets"],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      }
+    },
+    "schema": {
+      "watch": false,
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "bar:build"
+      }
+    }
+  },
+  "tags": []
+}

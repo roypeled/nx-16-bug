@@ -1,0 +1,37 @@
+{
+  "name": "foo",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/foo/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/packages/foo",
+        "format": ["cjs"],
+        "bundle": false,
+        "main": "packages/foo/src/main.ts",
+        "tsConfig": "packages/foo/tsconfig.app.json",
+        "assets": ["packages/foo/src/assets"],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      }
+    },
+    "schema": {
+      "watch": false,
+      "executor": "@nx/js:node",
+      "options": {
+        "buildTarget": "foo:build"
+      }
+    }
+  },
+  "tags": []
+}
