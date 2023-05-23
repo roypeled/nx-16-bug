@@ -6,16 +6,22 @@
   "targets": {
     "build": {
       "executor": "@nx/esbuild:esbuild",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "platform": "node",
         "outputPath": "dist/packages/foo",
-        "format": ["cjs"],
+        "format": [
+          "cjs"
+        ],
         "bundle": false,
         "main": "packages/foo/src/main.ts",
         "tsConfig": "packages/foo/tsconfig.app.json",
-        "assets": ["packages/foo/src/assets"],
+        "assets": [
+          "packages/foo/src/assets"
+        ],
         "generatePackageJson": true,
         "esbuildOptions": {
           "sourcemap": true,
@@ -26,9 +32,9 @@
       }
     },
     "schema": {
-      "watch": false,
       "executor": "@nx/js:node",
       "options": {
+        "watch": false,
         "buildTarget": "foo:build"
       }
     }

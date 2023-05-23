@@ -5,6 +5,10 @@
   "projectType": "application",
   "targets": {
     "build": {
+      "dependsOn": ["build-base", "^schema"],
+      "command": "echo 'Schemas and API are built'"
+    },
+    "build-base": {
       "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
@@ -34,26 +38,20 @@
             }
           }
         }
-      },
-      "dependsOn": [
-        {
-          "target": "schema",
-          "dependencies": true
-        }
-      ]
+      }
     },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "api:build"
+        "buildTarget": "api:build-base"
       },
       "configurations": {
         "development": {
-          "buildTarget": "api:build:development"
+          "buildTarget": "api:build-base:development"
         },
         "production": {
-          "buildTarget": "api:build:production"
+          "buildTarget": "api:build-base:production"
         }
       }
     }

@@ -6,16 +6,22 @@
   "targets": {
     "build": {
       "executor": "@nx/esbuild:esbuild",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "platform": "node",
         "outputPath": "dist/packages/bar",
-        "format": ["cjs"],
+        "format": [
+          "cjs"
+        ],
         "bundle": false,
         "main": "packages/bar/src/main.ts",
         "tsConfig": "packages/bar/tsconfig.app.json",
-        "assets": ["packages/bar/src/assets"],
+        "assets": [
+          "packages/bar/src/assets"
+        ],
         "generatePackageJson": true,
         "esbuildOptions": {
           "sourcemap": true,
@@ -26,10 +32,10 @@
       }
     },
     "schema": {
-      "watch": false,
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
+        "watch": false,
         "buildTarget": "bar:build"
       }
     }
